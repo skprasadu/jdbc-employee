@@ -43,22 +43,20 @@ public class ProjectServiceImplTest {
 		
 		assertEquals("nv", e1.getName());
 		
+        service.deleteById(1l);
 	}
 	
 	@Test
 	public void testUpdateProject() {
 		
-		Project e = new Project(2l, "nv1");
+		Project emp = service.getById(100l);
+        emp.setName("nv2_modified");
 		
-		service.create(e);
+		service.update(emp);
 		
-		e.setName("nv2");
+		Project e1 = service.getById(100l);
 		
-		service.update(e);
-		
-		Project e1 = service.getById(2l);
-		
-		assertEquals("nv2", e1.getName());
+		assertEquals("nv2_modified", e1.getName());
 	}
 	
 	@Test
